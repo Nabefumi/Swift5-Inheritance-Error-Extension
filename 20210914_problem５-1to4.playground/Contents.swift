@@ -82,7 +82,15 @@ print(problem2)
 
 //problem2
 
-class CarRepairServiceProvider {
+//1- Create a Service Provider class as a parent (base) class and make all your service classes
+//(CarRepairServiceProvider, HomeServiceProvider, StudentServicesProvider,…) inherits
+//from this parent class. Make any other necessary changes.
+
+class ServiceProvider {
+    init() {
+    }
+}
+class CarRepairServiceProvider: ServiceProvider {
     
     var Description: String
     var Carmodel: String
@@ -93,16 +101,21 @@ class CarRepairServiceProvider {
     }
 }
 
-class HomeServiceProvider {
-}
-
 enum HomeService {
     case CookingService
     case WashingService
     case BabySittingService
 }
 
-class StudentServicesProvider {
+class HomeServiceProvider: ServiceProvider {
+    var typesOfHomeServices: String
+    
+    init(typesOfHomeServices: String) {
+        self.typesOfHomeServices = typesOfHomeServices
+    }
+}
+
+class StudentServicesProvider: ServiceProvider {
     var studentServiceDescription: String
     
     init(studentServiceDescription: String) {
@@ -111,25 +124,27 @@ class StudentServicesProvider {
 }
 
 class clientA: CarRepairServiceProvider {
-    
+    override init(description: String, carmodel: String) {
+        super.init(description: "", carmodel: "")
+    }
 }
 
 class ClientB: HomeServiceProvider {
-    
+    override init(typesOfHomeServices: String) {
+        super.init(typesOfHomeServices: "")
+    }
 }
 
 class ClientC: StudentServicesProvider {
-    
+    override init(studentServiceDescription: String) {
+        super.init(studentServiceDescription: "")
+    }
 }
 
 //==========================
 var problem3 = "problem3"
 print("===============")
 print(problem3)
-
-
-
-
 
 //==========================
 var problem4 = "problem4"
